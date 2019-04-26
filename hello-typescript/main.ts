@@ -13,7 +13,7 @@ numeros.map(function(valor) {
 });
 
 numeros.map(valor => valor * 2);
-
+//testando
 
 class Matematica {
   soma(x, y){
