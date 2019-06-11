@@ -1,6 +1,6 @@
 <h5>Exemplo de Pipes</h5>
 
-<p>Títilo: {{ livro.titulo | uppercase }}</p>
+<p>Títilo: {{ livro.titulo | uppercase | camelCase }}</p>
 <p>Estrelas: {{ livro.rating | number:'1.1-1' }}</p>
 <p>Páginas: {{ livro.numeroPaginas | number}}</p>
 <P>Preço: {{ livro.preco | currency:'BRL' }}</P>
@@ -8,3 +8,9 @@
 <p>Url: {{ livro.url }}</p>
 <br>
 <p>Livro: {{ livro | json }}</p>
+
+<ul>
+  <li *ngFor="let liv of livros | filtroArray">
+    {{ liv }}
+  </li>
+</ul>
