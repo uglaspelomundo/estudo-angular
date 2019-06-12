@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 
 @Component({
   selector: 'app-exemplos-pipes',
@@ -17,6 +18,24 @@ export class ExemplosPipesComponent implements OnInit {
   };
 
   livros: string[] = ['Java', 'Angula 7'];
+
+filtro: string;
+
+  addCurso(valor) {
+    this.livros.push(valor);
+  }
+
+  obterCursos() {
+    if (this.livros.length === 0 || this.filtro === undefined || this.filtro.trim() === '') {
+      return this.livros;
+    }
+    return this.livros.filter((v) => {
+      if (v.toLowerCase().indexOf(this.filtro.toLowerCase()) >= 0) {
+      return true;
+    }
+      return false;
+    });
+  }
 
   constructor() { }
 
