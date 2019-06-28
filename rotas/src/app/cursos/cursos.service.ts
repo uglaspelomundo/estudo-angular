@@ -16,19 +16,14 @@ export class CursosService {
 
   getCurso(id: number) {
     const cursos = this.getCursos();
-    // for (item of this.cursos) {
-    //   console.log(item);
-    //   item = '';
-    // }
-    // tslint:disable-next-line: prefer-for-of
-    for (let i = 0; i < cursos.length; i++) {
-      const curso = cursos[i];
-      // tslint:disable-next-line: triple-equals
-      if (curso.id == id) {
-        return curso;
-      }
-    }
-    return null;
+    return cursos.find(item => item.id === Number(id));
+
+    //   for (const item of cursos) {
+    //     if (item.id === id) {
+    //       return item;
+    //     }
+    //   }
+    //   return null;
   }
   constructor() { }
 }
