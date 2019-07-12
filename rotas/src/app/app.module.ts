@@ -11,6 +11,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AlunoDetalheResolver } from './alunos/guards/aluno-detalhe-resolver';
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { AlunoDetalheResolver } from './alunos/guards/aluno-detalhe-resolver';
     AppComponent,
     HomeComponent,
     LoginComponent,
+    PaginaNaoEncontradaComponent,
   ],
   imports: [
     BrowserModule,
