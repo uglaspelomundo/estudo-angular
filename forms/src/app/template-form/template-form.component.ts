@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-template-form',
@@ -8,20 +9,52 @@ import { Component, OnInit } from '@angular/core';
 export class TemplateFormComponent implements OnInit {
 
   usuario: any = {
-    nome: 'Douglas',
-    email: 'senac.douglas@gmail.com'
+    nome: null,
+    email: null
   };
 
-  onSumit(form: any) {
-    console.log(form);
+  form: FormGroup;
 
-    console.log(this.usuario);
+  constructor(private fb: FormBuilder) { }
 
-  }
-
-  constructor() { }
 
   ngOnInit() {
+    this.form = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.email]]
+    });
+  }
+
+  onSumit(form: any) {
+    this.validateForm();
+    if (this.form.valid) {
+      this.fillUser();
+      console.log(this.usuario);
+    }
+  }
+
+  private fillUser() {
+    this.usuario = {
+      nome: this.name.value,
+      email: this.email.value
+    };
+  }
+
+  private validateForm() {
+    Object.keys(this.form.value).forEach(name => {
+      const control = this.form.get(name);
+      control.markAsDirty();
+      control.markAsTouched();
+      control.updateValueAndValidity();
+    });
+  }
+
+  get email(): AbstractControl {
+    return this.form.get('email');
+  }
+
+  get name(): AbstractControl {
+    return this.form.get('name');
   }
 
 }
