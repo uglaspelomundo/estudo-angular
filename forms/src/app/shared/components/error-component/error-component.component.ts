@@ -14,7 +14,7 @@ export class ErrorComponentComponent implements OnInit {
     minlength: (params) => 'Tamanho mínimo é de ' + params.requiredLength + ' caracteres',
     maxlength: (params) => 'Tamanho máximo é de ' + params.requiredLength + ' caracteres',
     pattern: (params) => 'O formato obrigatório é: ' + params.requiredPattern,
-    email: (params) => 'Erro campo precisa ser um email',
+    email: (params) => 'Erro o campo precisa ser um email',
     uniqueName: (params) => 'Esse campo precisa ser único'
   };
 
