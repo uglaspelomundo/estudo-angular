@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { FormDebugComponent } from './../form-debug/form-debug.component';
 import { SharedModule } from './../shared/shared.module';
 import { TemplateFormComponent } from './template-form.component';
@@ -14,7 +15,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule,
   ]
 })
 export class TemplateFormModule { }

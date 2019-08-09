@@ -15,10 +15,12 @@
       <app-error-component [control]="email"></app-error-component>
     </div>
 
+
+
     <div class="form-group col-2">
       <label for="zipcode" class="control-label">CEP</label>
       <input type="text" class="form-control" appElementError showSuccess="true" formControlName="zipcode"
-        placeholder="00000-000">
+        placeholder="00000-000" (blur)="geConsultaCep()" maxlength="8">
       <app-error-component [control]="zipcode"></app-error-component>
     </div>
 
@@ -36,34 +38,45 @@
 
     <div class="form-group col-12">
       <label class="control-label">Rua</label>
-      <input type="text" class="form-control" appElementError showSuccess="true" formControlName="street" disabled>
+      <input type="text" class="form-control" appElementError showSuccess="true" formControlName="street" readonly>
       <app-error-component [control]="street"></app-error-component>
     </div>
 
     <div class="form-group col-5">
       <label class="control-label">Bairro</label>
       <input type="text" class="form-control" appElementError showSuccess="true" formControlName="neighborhood"
-        disabled>
+        readonly>
       <app-error-component [control]="neighborhood"></app-error-component>
     </div>
 
     <div class="form-group col-4">
       <label class="control-label">Cidade</label>
-      <input type="text" class="form-control" appElementError showSucess="true" formControlName="city" disabled>
+      <input type="text" class="form-control" appElementError showSuccess="true" formControlName="city" readonly>
       <app-error-component [control]="city"></app-error-component>
     </div>
 
     <div class="form-group col-3">
       <label class="control-label">Estado</label>
-      <input type="text" class="form-control" appElementError showSucess="true" formControlName="state" disabled>
+      <select class="form-control" appElementError showSuccess="true" formControlName="state">
+        <option *ngFor="let state of listOfStates | async" [value]="state.sigla">{{ state.nome }}</option>
+      </select>
       <app-error-component [control]="state"></app-error-component>
     </div>
 
+    <div class="form-group col-3">
+      <label class="control-label">Cargo</label>
+      <select class="form-control" formControlName="cargo" [compareWith]="compararCargos">
+        <option *ngFor="let cargo of cargos" [ngValue]="cargo">{{ cargo.desc }}</option>
+      </select>
+    </div>
 
   </div>
 
 
 
-  <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Submit</button>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="button" class="btn" (click)="resetar()">Cancelar</button>
+  <button type="button" class="btn" (click)="setarCargo()">Cargo</button>
   <!-- <app-form-debug [FormDebug]="form"></app-form-debug> -->
 </form>

@@ -1,3 +1,5 @@
+import { DropdownService } from './services/dropdown.service';
+import { BuscaCepService } from './services/busca-cep.service';
 import { ElementErrorDirective } from './directives/element-error.directive';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -6,14 +8,18 @@ import { ErrorComponentComponent } from './components/error-component/error-comp
 @NgModule({
   declarations: [
     ElementErrorDirective,
-    ErrorComponentComponent
+    ErrorComponentComponent,
+
   ],
   imports: [
     CommonModule
   ],
   exports: [
     ElementErrorDirective,
-    ErrorComponentComponent
-  ]
+    ErrorComponentComponent,
+ ],
+  providers: [],
+
+
 })
 export class SharedModule { }

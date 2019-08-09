@@ -1,5 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
-.mt25 {
-  margin-top: 25px;
+.dodo1 {
+  border: red;
 }
+
+@import '~ngx-toastr/toastr';
