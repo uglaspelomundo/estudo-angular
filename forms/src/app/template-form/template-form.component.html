@@ -1,0 +1,90 @@
+<form [formGroup]="form" (ngSubmit)="onSumit()">
+  <div class="form-row">
+
+    <div class="form-group col-12">
+      <label for="name" class="control-label">Nome</label>
+      <input type="text" class="form-control" appElementError showSuccess="true" formControlName="name"
+        placeholder="Nome">
+      <app-error-component [control]="name"></app-error-component>
+    </div>
+
+    <div class="form-group col-12">
+      <label for="email" class="control-label">Email</label>
+      <input type="text" class="form-control" appElementError showSuccess="true" formControlName="email"
+        placeholder="nome@email.com">
+      <app-error-component [control]="email"></app-error-component>
+    </div>
+
+
+
+    <div class="form-group col-2">
+      <label for="zipcode" class="control-label">CEP</label>
+      <input type="text" class="form-control" appElementError showSuccess="true" formControlName="zipcode"
+        placeholder="00000-000" (blur)="geConsultaCep()" maxlength="8">
+      <app-error-component [control]="zipcode"></app-error-component>
+    </div>
+
+    <div class="form-group col-2">
+      <label for="number" class="control-label">Número</label>
+      <input type="text" id="number" class="form-control" appElementError showSuccess="true" formControlName="number"
+        placeholder="000">
+      <app-error-component [control]="number"></app-error-component>
+    </div>
+
+    <div class="form-group col-8">
+      <label for="complement" class="control-label">Complemento</label>
+      <input type="text" id="complement" class="form-control" formControlName="complement" placeholder="Complemento">
+    </div>
+
+    <div class="form-group col-12">
+      <label class="control-label">Rua</label>
+      <input type="text" class="form-control" appElementError showSuccess="true" formControlName="street" readonly>
+      <app-error-component [control]="street"></app-error-component>
+    </div>
+
+    <div class="form-group col-5">
+      <label class="control-label">Bairro</label>
+      <input type="text" class="form-control" appElementError showSuccess="true" formControlName="neighborhood"
+        readonly>
+      <app-error-component [control]="neighborhood"></app-error-component>
+    </div>
+
+    <div class="form-group col-4">
+      <label class="control-label">Cidade</label>
+      <input type="text" class="form-control" appElementError showSuccess="true" formControlName="city" readonly>
+      <app-error-component [control]="city"></app-error-component>
+    </div>
+
+    <div class="form-group col-3">
+      <label class="control-label">Estado</label>
+      <select class="form-control" appElementError showSuccess="true" formControlName="state">
+        <option *ngFor="let state of listOfStates | async" [value]="state.sigla">{{ state.nome }}</option>
+      </select>
+      <app-error-component [control]="state"></app-error-component>
+    </div>
+
+    <div class="form-group col-3">
+      <label class="control-label">Cargos</label>
+      <select class="form-control" formControlName="cargo" [compareWith]="compararCargos">
+        <option *ngFor="let cargo of cargos" [ngValue]="cargo">{{ cargo.desc }}</option>
+      </select>
+    </div>
+
+    <div class="form-group col-3">
+      <label class="control-label">Tecnologias</label>
+      <select multiple class="form-control" formControlName="tecnologia">
+        <option *ngFor="let tecnologia of tecnologias" [value]="tecnologia.nome">{{ tecnologia.desc }}</option>
+      </select>
+    </div>
+
+  </div>
+
+
+
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="button" class="btn btn-default" (click)="resetar()">Cancelar</button>
+  <button type="button" class="btn btn-info" (click)="setarCargo()">Cargo</button>
+  <button type="button" class="btn btn-info" (click)="setarTecnologias()">Tecnologias</button>
+  <!-- <app-form-debug [FormDebug]="form"></app-form-debug> -->
+</form>
