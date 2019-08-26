@@ -26,7 +26,8 @@ export class TemplateFormComponent implements OnInit {
     street: null,
     neighborhood: null,
     city: null,
-    state: null
+    state: null,
+    termos: null
   };
 
   form: FormGroup;
@@ -34,6 +35,7 @@ export class TemplateFormComponent implements OnInit {
   http: any;
   cargos: any[];
   tecnologias: any[];
+  newsletterOp: any[];
 
   constructor(
     private fb: FormBuilder,
@@ -55,6 +57,7 @@ export class TemplateFormComponent implements OnInit {
 
     this.cargos = this.dropdownService.getCargos();
     this.tecnologias = this.dropdownService.getTecnologias();
+    this.newsletterOp = this.dropdownService.getNewsletter();
 
 
     this.form = this.fb.group({
@@ -69,6 +72,8 @@ export class TemplateFormComponent implements OnInit {
       state: ['', [Validators.required]],
       cargo: [null],
       tecnologia: [null],
+      newsletter: ['s'],
+      termos: [null],
     });
   }
 
